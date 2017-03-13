@@ -1,0 +1,37 @@
+<!--
+  Copyright 2017 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<resources>
+  <string name="app_name">Game Test Manager</string>
+
+  <!-- TestLoopsActivity -->
+  <string name="must_accept_permission">You must accept the storage permission to continue.</string>
+  <plurals name="run_loops">
+    <item quantity="one">Run %d test loop</item>
+    <item quantity="other">Run %d test loops</item>
+  </plurals>
+  <string name="run_default_loop">Run default test loop</string>
+  <string name="finished_executing">Finished executing all scenarios.</string>
+  <string name="didnt_finish">Timed out while running scenarios.</string>
+  <string name="set_timeout">Set timeout</string>
+  <string name="cancel">Cancel</string>
+  <string name="okay">Okay</string>
+  <string name="must_be_number">The timeout must be a number</string>
+  <string name="select_all">Select all</string>
+  <string name="unselect_all">Unselect all</string>
+  <string name="player_experience">Player Experience</string>
+  <string name="gpu_compatibility">GPU Compatibility</string>
+  <string name="compatibility">Compatibility</string>
+  <string name="performance">Performance</string>
+  <string name="select_test_loops">Select game test loops</string>
+  <string name="test_loop_apps">Test Loop Apps</string>
+</resources>
