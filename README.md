@@ -11,8 +11,11 @@ The test loop manager is an app designed for developers that want to integrate t
 
 ## Screenshots
 
-![Screenshot showing app selection](/screenshots/screenshot_app_select.png "Select your app")
-![Screenshot showing test loop selection](/screenshots/screenshot_testloop_select.png "Select your test loops")
+1. Select an app
+<p align="center"><img src="/screenshots/screenshot_app_select.png" alt="Screenshot showing app selection" title="Select an app" width="150px"></p>
+
+2. Select the test loops to run
+<p align="center"><img src="/screenshots/screenshot_testloop_select.png" alt="Screenshot showing test loop selection" title="Select the test loops" width="150px"></p>
 
 ## License
 
