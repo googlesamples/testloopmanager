@@ -58,11 +58,13 @@ public class TestLoopsActivity extends AppCompatActivity {
   private static final int REQUEST_STORAGE_PERMISSION = 2;
 
   private static final String CHECKED_SCENARIOS = "checkedScenarios";
+  private static final String TEST_LOOP_GROUPS = "testLoopGroups";
   private static final String TIMEOUT = "timeout";
 
   private boolean runningTestLoop = false;
   private ResolveInfo resolveInfo;
   private final Set<Integer> checkedScenarios = new TreeSet<>();
+  private final ArrayList<TestLoopGroup> testLoopGroups = new ArrayList<>();
   private long timeout;
 
   private TestLoopGroupAdapter adapter;
@@ -88,11 +90,15 @@ public class TestLoopsActivity extends AppCompatActivity {
 
     if (savedInstanceState != null) {
       checkedScenarios.addAll(savedInstanceState.getIntegerArrayList(CHECKED_SCENARIOS));
+      List<TestLoopGroup> savedTestLoopGroups =
+          savedInstanceState.getParcelableArrayList(TEST_LOOP_GROUPS);
+      testLoopGroups.addAll(savedTestLoopGroups);
+      updateTestLoopButton();
     }
 
     resolveInfo = getIntent().getParcelableExtra("resolveInfo");
 
-    adapter = new TestLoopGroupAdapter(this, checkedScenarios);
+    adapter = new TestLoopGroupAdapter(this, checkedScenarios, testLoopGroups);
     expandableListView = (ExpandableListView) findViewById(R.id.test_loop_list);
     expandableListView.setAdapter(adapter);
     expandableListView.setOnChildClickListener(new OnChildClickListener() {
@@ -123,6 +129,11 @@ public class TestLoopsActivity extends AppCompatActivity {
       }
     });
 
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
     new LoadManifestDataFromApplicationInfoTask().execute();
   }
 
@@ -189,6 +200,7 @@ public class TestLoopsActivity extends AppCompatActivity {
     super.onSaveInstanceState(outState);
 
     outState.putIntegerArrayList(CHECKED_SCENARIOS, new ArrayList<>(checkedScenarios));
+    outState.putParcelableArrayList(TEST_LOOP_GROUPS, testLoopGroups);
   }
 
   @Override
@@ -351,12 +363,13 @@ public class TestLoopsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostExecute(List<TestLoopGroup> testLoopGroups) {
-      // View may have been destroyed by now
-      if (launchAllButton != null && testLoopGroups.size() > 0) {
-        adapter.addAll(testLoopGroups);
+    protected void onPostExecute(List<TestLoopGroup> newTestLoopGroups) {
+      if (!testLoopGroups.equals(newTestLoopGroups) && !isDestroyed()) {
+        checkedScenarios.clear();
+        testLoopGroups.clear();
+        testLoopGroups.addAll(newTestLoopGroups);
         adapter.notifyDataSetChanged();
-        expandableListView.expandGroup(testLoopGroups.size() - 1); // expand the "All" group
+        expandableListView.expandGroup(newTestLoopGroups.size() - 1); // expand the "All" group
         updateTestLoopButton();
       }
     }

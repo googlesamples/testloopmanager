@@ -16,10 +16,13 @@
 
 package com.google.samples.apps.gameloopmanager;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
 import java.util.List;
 
 /** A container for all of the test loop group data. */
-public class TestLoopGroup {
+public class TestLoopGroup implements Parcelable {
 
   private String label;
   private List<Integer> loops;
@@ -36,4 +39,57 @@ public class TestLoopGroup {
   public List<Integer> getLoops() {
     return loops;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    TestLoopGroup that = (TestLoopGroup) o;
+
+    if (label != null ? !label.equals(that.label) : that.label != null) {
+      return false;
+    }
+    return loops != null ? loops.equals(that.loops) : that.loops == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = label != null ? label.hashCode() : 0;
+    result = 31 * result + (loops != null ? loops.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(this.label);
+    dest.writeList(this.loops);
+  }
+
+  protected TestLoopGroup(Parcel in) {
+    this.label = in.readString();
+    this.loops = new ArrayList<Integer>();
+    in.readList(this.loops, Integer.class.getClassLoader());
+  }
+
+  public static final Creator<TestLoopGroup> CREATOR = new Creator<TestLoopGroup>() {
+    @Override
+    public TestLoopGroup createFromParcel(Parcel source) {
+      return new TestLoopGroup(source);
+    }
+
+    @Override
+    public TestLoopGroup[] newArray(int size) {
+      return new TestLoopGroup[size];
+    }
+  };
 }

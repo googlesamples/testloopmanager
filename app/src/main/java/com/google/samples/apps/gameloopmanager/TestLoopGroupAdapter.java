@@ -23,24 +23,21 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 /** An ExpandableListAdapter for holding {@link TestLoopGroup}s. */
 public class TestLoopGroupAdapter extends BaseExpandableListAdapter {
 
-  private final List<TestLoopGroup> testLoopGroups = new ArrayList<>();
+  private final List<TestLoopGroup> testLoopGroups;
   private final Set<Integer> checkedScenarios;
   private final LayoutInflater inflater;
 
-  public TestLoopGroupAdapter(Context context, Set<Integer> checkedScenarios) {
+  public TestLoopGroupAdapter(
+      Context context, Set<Integer> checkedScenarios, List<TestLoopGroup> testLoopGroups) {
     this.inflater = LayoutInflater.from(context);
     this.checkedScenarios = checkedScenarios;
-  }
-
-  public void addAll(List<TestLoopGroup> loopGroups) {
-    testLoopGroups.addAll(loopGroups);
+    this.testLoopGroups = testLoopGroups;
   }
 
   @Override

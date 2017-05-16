@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+  }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
     ListView lv = (ListView) findViewById(R.id.listView);
 
     final Intent mainIntent = new Intent("com.google.intent.action.TEST_LOOP", null);
