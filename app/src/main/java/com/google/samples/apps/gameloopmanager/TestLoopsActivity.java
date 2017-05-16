@@ -369,8 +369,10 @@ public class TestLoopsActivity extends AppCompatActivity {
         testLoopGroups.clear();
         testLoopGroups.addAll(newTestLoopGroups);
         adapter.notifyDataSetChanged();
-        expandableListView.expandGroup(newTestLoopGroups.size() - 1); // expand the "All" group
         updateTestLoopButton();
+        if (testLoopGroups.size() > 0) {
+          expandableListView.expandGroup(newTestLoopGroups.size() - 1); // expand the "All" group
+        }
       }
     }
   }
