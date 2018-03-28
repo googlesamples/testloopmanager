@@ -308,7 +308,7 @@ public class TestLoopsActivity extends AppCompatActivity {
         for (String key : metaData.keySet()) {
           if (key.startsWith("com.google.test.loops.")) {
             List<Integer> loops = new ArrayList<>();
-            String loopsList = metaData.getString(key);
+            String loopsList = String.valueOf(metaData.get(key));
             String[] loopsArray = loopsList.split(",");
             for (String s : loopsArray) {
               if (s.contains("-")) {
