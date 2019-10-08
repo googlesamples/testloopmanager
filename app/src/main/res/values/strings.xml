@@ -11,15 +11,15 @@
   limitations under the License.
   -->
 <resources>
-  <string name="app_name">Game Test Manager</string>
+  <string name="app_name">Game Loop Manager</string>
 
   <!-- TestLoopsActivity -->
   <string name="must_accept_permission">You must accept the storage permission to continue.</string>
   <plurals name="run_loops">
-    <item quantity="one">Run %d test loop</item>
-    <item quantity="other">Run %d test loops</item>
+    <item quantity="one">Run %d game loop</item>
+    <item quantity="other">Run %d game loops</item>
   </plurals>
-  <string name="run_default_loop">Run default test loop</string>
+  <string name="run_default_loop">Run default game loop</string>
   <string name="finished_executing">Finished executing all scenarios.</string>
   <string name="didnt_finish">Timed out while running scenarios.</string>
   <string name="set_timeout">Set timeout</string>
@@ -32,6 +32,6 @@
   <string name="gpu_compatibility">GPU Compatibility</string>
   <string name="compatibility">Compatibility</string>
   <string name="performance">Performance</string>
-  <string name="select_test_loops">Select game test loops</string>
-  <string name="test_loop_apps">Test Loop Apps</string>
+  <string name="select_test_loops">Select game loops</string>
+  <string name="test_loop_apps">Game Loop Manager</string>
 </resources>
